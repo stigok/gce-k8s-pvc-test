@@ -21,8 +21,6 @@ spec:
       containers:
       - args:
         - ping
-        - -c
-        - "3"
         - stigok.com
         image: alpine
         name: pinger
