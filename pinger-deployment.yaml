@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.6.0 (e4adfef)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: pinger
+  name: pinger
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: pinger
+    spec:
+      containers:
+      - args:
+        - ping
+        - -c
+        - "3"
+        - stigok.com
+        image: alpine
+        name: pinger
+        resources: {}
+        volumeMounts:
+        - mountPath: /data
+          name: pinger-files
+      restartPolicy: Always
+      volumes:
+      - name: pinger-files
+        persistentVolumeClaim:
+          claimName: pinger-files
+status: {}

@@ -1,0 +1,15 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pinger-files-pv
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 10Gi
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  gcePersistentDisk:
+    pdName: pinger-test-disk
+    fsType: ext4

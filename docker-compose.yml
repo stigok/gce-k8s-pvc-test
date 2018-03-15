@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+  pinger:
+    image: alpine
+    command: ping -c 3 stigok.com
+    volumes:
+      - pinger-files:/data
+
+volumes:
+  pinger-files:
+
